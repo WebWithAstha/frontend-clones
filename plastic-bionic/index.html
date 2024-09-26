@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="shortcut icon" href="https://plasticbionic.com/favicon.ico" type="image/x-icon">
+    <title>Plasticbionic clone</title>
+    <style>
+        @font-face {
+            font-family: myfont;
+            src: url(/Lausanne-Regular.ttf);
+        }
+
+        h1 {
+            font-family: myfont;
+        }
+
+        .page h1 {
+            position: relative;
+            line-height: 1;
+        }
+
+        .page h1::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background-color: #fff;
+            left: 0;
+            top: 95%;
+            transform: scaleX(0);
+            transform-origin: right;
+            z-index: 1;
+            transition: transform .5s linear;
+        }
+
+
+
+        .page .text:hover h1::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+
+
+
+        .overlay {
+            transition: transform .5s ease;
+            transform: scaleY(0);
+            transform-origin: bottom;
+        }
+
+        .item:hover .overlay {
+            transform-origin: top;
+            transform: scaleY(1);
+            z-index: -1;
+        }
+
+        .item:hover {
+            color: black;
+        }
+
+
+
+        nav {
+            z-index: 99;
+            pointer-events: none;
+        }
+
+        nav .top-section::after,
+        nav .nav-items:nth-child(1)::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #00000021;
+            transform: scaleY(0);
+            transition: transform .3s ease;
+            transform-origin: bottom;
+            z-index: -1;
+        }
+
+        nav .nav-items:nth-child(1)::after {
+            display: flex;
+            align-items: center;
+            padding: 0 2.5rem;
+            background-color: #fff;
+            z-index: 0;
+        }
+        .top-section:hover .nav-items{
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+        
+        .top-section:hover::after,
+        .top-section:hover .nav-items:nth-child(1)::after {
+            color: black;
+            content: "Full Screen";
+            transform-origin: bottom;
+            transform: scaleY(1);
+            backdrop-filter: blur(5px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="main" class="w-full bg-black relative text-white">
+        <div id="loader"
+            class=" w-full h-screen fixed z-[99] top-0 left-0 bg-black text-white flex items-center justify-center">
+            <div class="flex items-center justify-center h-36 overflow-hidden relative z-10">
+                <h1 class="w-max text-[9.5vw]">Plasticbionic</h1>
+            </div>
+            <div class="loader-bg-img w-[20rem] absolute h-[25rem] bg-[#624c78] z-0 flex items-center justify-center overflow-hidden">
+                <img class="object-cover h-full w-full" src="https://plasticbionic.com/loader_1@2.png" alt="">
+                <img class="absolute object-cover h-full w-full" src="https://plasticbionic.com/loader_2@2.png"
+                alt="">
+                <img class="absolute object-cover w-full h-full" src="https://plasticbionic.com/loader_3@2.png"
+                    alt="">
+                <img class="absolute w-[100vw] h-[100vh] object-cover"
+                src="https://dev.plasticbionic.com/wp-content/uploads/36DAYSOFTYPE_Typography_Illustration_2023_19.jpg"
+                alt="">
+            </div>
+        </div>
+
+
+        <nav class="w-full h-[4.5rem] fixed top-0 left-0 origin-left border-b border-[rgb(255,255,255,.2)]">
+            <div class="top-section w-full h-full flex cursor-pointer">
+                <div class="nav-items z-[999] relative w-1/3 md:text-sm text-lg leading-none px-10 flex items-center border-b-4 border-b-white origin-left">Change View</div>
+                <div class="nav-items z-[999] relative w-1/3 md:text-sm text-lg leading-none px-10 flex items-center opacity-0">Grid</div>
+                <div class="nav-items z-[999] relative w-1/3 md:text-sm text-lg leading-none px-10 flex items-center opacity-0">List</div>
+            </div>
+                <div class="bottom-section  md:p-5 gap-10 w-max absolute top-[100%] right-0 flex justify-end">
+                <h4 class="md:block hidden hover:border-white text-transparent border-b border-transparent cursor-pointer transition-all">Work</h4>
+                <h4 class="md:block hidden hover:border-white text-transparent border-b border-transparent cursor-pointer transition-all">Studio</h4>
+                <h4 class="md:block hidden hover:border-white text-transparent border-b border-transparent cursor-pointer transition-all">Instagram</h4>
+                <h4 class="md:hidden block mr-4 mt-2 cursor-pointer text-transparent rounded-md px-1 py-.5 hover:bg-[rgb(0,0,0,.4)]">+</h4>
+
+            </div>
+        </nav>
+
+        <div id="page1"
+            class="page overflow-hidden relative flex items-center justify-center w-full h-screen bg-yellow-300 overflow-hidden">
+            <img class="w-full h-full object-cover"
+                src="https://dev.plasticbionic.com/wp-content/uploads/36DAYSOFTYPE_Typography_Illustration_2023_19.jpg"
+                alt="">
+            <div class="text cursor-pointer absolute">
+                <div
+                    class="text-cover flex overflow-hidden items-center justify-center lg:mb-0 mb-4 lg:h-44 overflow-hidden relative z-10">
+                    <h1 class="w-max first relative text-[9.5vw] font-medium">36 Days</h1>
+                </div>
+                <div
+                    class="text-cover flex overflow-hidden items-center justify-center lg:h-44 -mt-4 overflow-hidden relative z-10">
+                    <h1 class="w-max second relative text-[9.5vw] font-medium">of type III</h1>
+                </div>
+            </div>
+        </div>
+        <div id="page2" class="page same-animation overflow-hidden relative flex items-center justify-center w-full h-screen bg-[#3c4c64]">
+            <img class="w-full h-full object-cover"
+                src="https://dev.plasticbionic.com/wp-content/uploads/DAYS_Illustration_A.jpg" alt="">
+            <div class="text cursor-pointer top-0 -translate-y-[110%] absolute">
+                <h1 class="w-max relative text-[9.5vw] font-medium">Days</h1>
+            </div>
+        </div>
+        <div id="page3" class="page same-animation overflow-hidden relative flex items-center justify-center w-full h-screen bg-[#bdb2a0]">
+            <img class="w-full h-full object-cover"
+                src="https://dev.plasticbionic.com/wp-content/uploads/HARVARDBUSINESSREVIEW_Illustration_7.jpg" alt="">
+            <div class="text cursor-pointer top-0 -translate-y-[110%] flex flex-col items-center absolute">
+                <h1 class="w-max relative text-[9.5vw] font-medium">HarvardBusiness</h1>
+                <h1 class="w-max relative text-[9.5vw] font-medium">Review</h1>
+            </div>
+        </div>
+        <div id="page4" class="page same-animation overflow-hidden relative flex items-center justify-center w-full h-screen bg-[#9b957f]">
+            <img class="w-full h-full object-cover"
+                src="https://dev.plasticbionic.com/wp-content/uploads/YETI_Illustration_ArtDirection_Home2.jpg" alt="">
+            <div class="text cursor-pointer top-0 -translate-y-[110%] absolute">
+                <h1 class="w-max relative text-[9.5vw] font-medium">YetiCycles</h1>
+            </div>
+        </div>
+        <div id="page5" class="page same-animation overflow-hidden relative flex items-center justify-center w-full h-screen bg-[#00020b]">
+            <img class="w-full h-full object-cover"
+                src="https://dev.plasticbionic.com/wp-content/uploads/BARRIERE_Illustration_ArtDirection_HOME4.jpg"
+                alt="">
+            <div class="text cursor-pointer top-0 -translate-y-[110%] absolute">
+                <h1 class="w-max relative text-[9.5vw] font-medium">Barriere</h1>
+            </div>
+        </div>
+        <div id="list-container" class="w-full bg-black pt-10">
+            <h2 class="text-center text-lg mb-10 italic">List view -</h2>
+            <div class="item w-full py-8 bg-black flex items-center justify-between px-10 relative z-10 cursor-pointer">
+                <h3>R16 in river</h3>
+                <h4 class="uppercase text-[10px] text-zinc-600">Lorem ipsum dolor sit amet.</h4>
+                <div class="overlay w-full h-full absolute top-0 left-0 bg-[#c9c1b0]"></div>
+            </div>
+            <div class="item w-full py-8 bg-black flex items-center justify-between px-10 relative z-10 cursor-pointer">
+                <h3>R16 in river</h3>
+                <h4 class="uppercase text-[10px] text-zinc-600">Lorem ipsum dolor sit amet.</h4>
+                <div class="overlay w-full h-full absolute top-0 left-0 bg-[#a9a48f]"></div>
+            </div>
+            <div class="item w-full py-8 bg-black flex items-center justify-between px-10 relative z-10 cursor-pointer">
+                <h3>R16 in river</h3>
+                <h4 class="uppercase text-[10px] text-zinc-600">Lorem ipsum dolor sit amet.</h4>
+                <div class="overlay w-full h-full absolute top-0 left-0 bg-[#d5cfc4]"></div>
+            </div>
+            <div class="item w-full py-8 bg-black flex items-center justify-between px-10 relative z-10 cursor-pointer">
+                <h3>R16 in river</h3>
+                <h4 class="uppercase text-[10px] text-zinc-600">Lorem ipsum dolor sit amet.</h4>
+                <div class="overlay w-full h-full absolute top-0 left-0 bg-[#d2b78c]"></div>
+            </div>
+            <div class="item w-full py-8 bg-black flex items-center justify-between px-10 relative z-10 cursor-pointer">
+                <h3>R16 in river</h3>
+                <h4 class="uppercase text-[10px] text-zinc-600">Lorem ipsum dolor sit amet.</h4>
+                <div class="overlay w-full h-full absolute top-0 left-0 bg-[#93d8cd]"></div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js' integrity='sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js' integrity='sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+        <script src='https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js'></script>
+        <script src='script.js'></script>
+    
+</body>
+
+</html>
